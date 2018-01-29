@@ -1,4 +1,4 @@
-import { Component, ContentChild, TemplateRef, AfterContentInit } from '@angular/core';
+import { Component, ContentChild, TemplateRef, AfterContentInit, Input } from '@angular/core';
 import { AsyncEventInitDirective } from './async-event-init.directive';
 import { AsyncEventProcessingDirective } from './async-event-processing.directive';
 import { AsyncEventProcessedDirective } from './async-event-processed.directive';
@@ -13,6 +13,8 @@ import { AsyncEventTemplateContext } from './async-event-template-context';
 })
 export class AsyncEventDefaultsComponent implements AfterContentInit {
 
+  @Input() setName = '';
+
   /** Content children directive querying. */
   @ContentChild(AsyncEventInitDirective) asyncEventInitDirective?: AsyncEventInitDirective;
   @ContentChild(AsyncEventProcessingDirective) asyncEventProcessingDirective?: AsyncEventProcessingDirective;
@@ -23,19 +25,19 @@ export class AsyncEventDefaultsComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     if (this.asyncEventInitDirective && this.asyncEventInitDirective.templateRef) {
-      this._defaultsService.initTemplateRef = this.asyncEventInitDirective.templateRef;
+      this._defaultsService.setTemplateRef(this.setName, 'init', this.asyncEventInitDirective.templateRef);
     }
 
     if (this.asyncEventProcessingDirective && this.asyncEventProcessingDirective.templateRef) {
-      this._defaultsService.processingTemplateRef = this.asyncEventProcessingDirective.templateRef;
+      this._defaultsService.setTemplateRef(this.setName, 'processing', this.asyncEventProcessingDirective.templateRef);
     }
 
     if (this.asyncEventProcessedDirective && this.asyncEventProcessedDirective.templateRef) {
-      this._defaultsService.processedTemplateRef = this.asyncEventProcessedDirective.templateRef;
+      this._defaultsService.setTemplateRef(this.setName, 'processed', this.asyncEventProcessedDirective.templateRef);
     }
 
     if (this.asyncEventErrorDirective && this.asyncEventErrorDirective.templateRef) {
-      this._defaultsService.errorTemplateRef = this.asyncEventErrorDirective.templateRef;
+      this._defaultsService.setTemplateRef(this.setName, 'error', this.asyncEventErrorDirective.templateRef);
     }
   }
 }

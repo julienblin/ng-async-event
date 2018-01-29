@@ -1,5 +1,4 @@
 <async-event-defaults>
-
   <div *asyncEventProcessing>
     Loading...
   </div>
@@ -16,6 +15,16 @@
   </div>
 </async-event-defaults>
 
+<async-event-defaults [setName]="'alternate'">
+  <div *asyncEventProcessing>
+    Loading 2...
+  </div>
+
+  <!-- <div *asyncEventError="let error=error">
+    {{ error }}
+  </div> -->
+</async-event-defaults>
+
 <async-event [asyncEvent]="testEvent$ | async">
 
   <!-- <div *asyncEventProcessed="let result=result">
@@ -24,5 +33,5 @@
 
 </async-event>
 
-<async-event [asyncEvent]="errorEvent$ | async">
+<async-event [asyncEvent]="errorEvent$ | async" [setName]="'alternate'">
 </async-event>

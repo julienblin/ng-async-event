@@ -17,6 +17,9 @@ export class AsyncEventComponent {
   /** The async event */
   @Input() asyncEvent: IAsyncEvent;
 
+  /** The default set to use */
+  @Input() setName = '';
+
   /** Content children directive querying. */
   @ContentChild(AsyncEventInitDirective) asyncEventInitDirective?: AsyncEventInitDirective;
   @ContentChild(AsyncEventProcessingDirective) asyncEventProcessingDirective?: AsyncEventProcessingDirective;
@@ -28,25 +31,25 @@ export class AsyncEventComponent {
   get initTemplateRef(): TemplateRef<AsyncEventTemplateContext> {
     return this.asyncEventInitDirective && this.asyncEventInitDirective.templateRef
       ? this.asyncEventInitDirective.templateRef
-      : this._defaultsService.initTemplateRef;
+      : this._defaultsService.getTemplateRef(this.setName, 'init');
   }
 
   get processingTemplateRef(): TemplateRef<AsyncEventTemplateContext> {
     return this.asyncEventProcessingDirective && this.asyncEventProcessingDirective.templateRef
       ? this.asyncEventProcessingDirective.templateRef
-      : this._defaultsService.processingTemplateRef;
+      : this._defaultsService.getTemplateRef(this.setName, 'processing');
   }
 
   get processedTemplateRef(): TemplateRef<AsyncEventTemplateContext> {
     return this.asyncEventProcessedDirective && this.asyncEventProcessedDirective.templateRef
       ? this.asyncEventProcessedDirective.templateRef
-      : this._defaultsService.processedTemplateRef;
+      : this._defaultsService.getTemplateRef(this.setName, 'processed');
   }
 
   get errorTemplateRef(): TemplateRef<AsyncEventTemplateContext> {
     return this.asyncEventErrorDirective && this.asyncEventErrorDirective.templateRef
       ? this.asyncEventErrorDirective.templateRef
-      : this._defaultsService.errorTemplateRef;
+      : this._defaultsService.getTemplateRef(this.setName, 'error');
   }
 
   get templateOutletContext() {

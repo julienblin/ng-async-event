@@ -1,43 +1,28 @@
 import { Injectable, TemplateRef } from '@angular/core';
 import { AsyncEventTemplateContext } from './async-event-template-context';
 
+export type TemplateName = 'init' | 'processed' | 'processing' | 'error';
+
 @Injectable()
 export class NgAsyncEventDefaultsService {
 
-  private _initTemplateRef: TemplateRef<AsyncEventTemplateContext>;
-  private _processingTemplateRef: TemplateRef<AsyncEventTemplateContext>;
-  private _processedTemplateRef: TemplateRef<AsyncEventTemplateContext>;
-  private _errorTemplateRef: TemplateRef<AsyncEventTemplateContext>;
+  private _defaultsSets: IDefaultsSets = {};
 
-  get initTemplateRef() {
-    return this._initTemplateRef;
+  getTemplateRef(setName: string, templateName: TemplateName) {
+    return this._defaultsSets[setName] && this._defaultsSets[setName][templateName];
   }
 
-  set initTemplateRef(templateRef: TemplateRef<AsyncEventTemplateContext>) {
-    this._initTemplateRef = templateRef;
-  }
+  setTemplateRef(setName: string, templateName: TemplateName, templateRef: TemplateRef<AsyncEventTemplateContext>) {
+    if (!this._defaultsSets[setName]) {
+      this._defaultsSets[setName] = {};
+    }
 
-  get processingTemplateRef() {
-    return this._processingTemplateRef;
+    this._defaultsSets[setName][templateName] = templateRef;
   }
+}
 
-  set processingTemplateRef(templateRef: TemplateRef<AsyncEventTemplateContext>) {
-    this._processingTemplateRef = templateRef;
-  }
-
-  get processedTemplateRef() {
-    return this._processedTemplateRef;
-  }
-
-  set processedTemplateRef(templateRef: TemplateRef<AsyncEventTemplateContext>) {
-    this._processedTemplateRef = templateRef;
-  }
-
-  get errorTemplateRef() {
-    return this._errorTemplateRef;
-  }
-
-  set errorTemplateRef(templateRef: TemplateRef<AsyncEventTemplateContext>) {
-    this._errorTemplateRef = templateRef;
-  }
+interface IDefaultsSets {
+  [setName: string]: {
+    [templateName: string]: TemplateRef<AsyncEventTemplateContext>;
+  };
 }
