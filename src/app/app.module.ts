@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { NgAsyncEventModule } from './modules/ng-async-event/ng-async-event.module';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgAsyncEventModule
   ],
   providers: [],
   bootstrap: [AppComponent]
