@@ -6,6 +6,31 @@ import { AsyncEventErrorDirective } from './async-event-error.directive';
 import { NgAsyncEventDefaultsService } from './ng-async-event-defaults.service';
 import { AsyncEventTemplateContext } from './async-event-template-context';
 
+/**
+ * Sets defaults templates that are then used in <async-event>.
+ * Templates are organized into named sets to be able to cope
+ * with different situations.
+ *
+ * @example
+ * <async-event-defaults [setName]="minimal">
+ *
+ *  <div *asyncEventProcessing>
+ *    Loading...
+ *  </div>
+ *
+ *  <div *asyncEventProcessed="let result=result">
+ *    {{ result | json}}
+ *  </div>
+ *
+ *  <div *asyncEventError="let error=error">
+ *    {{ error }}
+ *    <code *ngIf="error.stack">
+ *      {{ error.stack }}
+ *    </code>
+ *  </div>
+ *
+ *</async-event-defaults>
+ */
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'async-event-defaults',
@@ -13,6 +38,7 @@ import { AsyncEventTemplateContext } from './async-event-template-context';
 })
 export class AsyncEventDefaultsComponent implements AfterContentInit {
 
+  /** The set name. */
   @Input() setName = '';
 
   /** Content children directive querying. */

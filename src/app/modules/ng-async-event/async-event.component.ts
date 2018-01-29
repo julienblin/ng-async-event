@@ -7,6 +7,26 @@ import { AsyncEventErrorDirective } from './async-event-error.directive';
 import { NgAsyncEventDefaultsService } from './ng-async-event-defaults.service';
 import { AsyncEventTemplateContext } from './async-event-template-context';
 
+/**
+ * Displays an {IAsyncEvent} based on either content directives
+ * or defaults directive set previously by <async-event-defaults>.
+ *
+ * @example
+ * <async-event [asyncEvent]="testEvent$ | async">
+ *
+ *  <div *asyncEventProcessed="let result=result">
+ *    {{ result }}
+ *  </div>
+ *
+ *  <div *asyncEventError="let error=error">
+ *    {{ error }}
+ *    <code *ngIf="error.stack">
+ *      {{ error.stack }}
+ *    </code>
+ *  </div>
+ *
+ *</async-event>
+ */
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'async-event',
@@ -17,7 +37,7 @@ export class AsyncEventComponent {
   /** The async event */
   @Input() asyncEvent: IAsyncEvent;
 
-  /** The default set to use */
+  /** The default set name to use */
   @Input() setName = '';
 
   /** Content children directive querying. */

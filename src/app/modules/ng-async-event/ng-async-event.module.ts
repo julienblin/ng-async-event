@@ -8,6 +8,16 @@ import { AsyncEventErrorDirective } from './async-event-error.directive';
 import { NgAsyncEventDefaultsService } from './ng-async-event-defaults.service';
 import { AsyncEventDefaultsComponent } from './async-event-defaults.component';
 
+/**
+ * The module for ng-async-event that includes all components, services and directives.
+ * @example
+ * @NgModule({
+ *  ...
+ *  imports: [
+ *  ...,
+ *  NgAsyncEventModule
+ * ]
+ */
 @NgModule({
   imports: [
     CommonModule
