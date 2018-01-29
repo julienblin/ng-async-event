@@ -5,6 +5,8 @@ import { AsyncEventInitDirective } from './async-event-init.directive';
 import { AsyncEventProcessingDirective } from './async-event-processing.directive';
 import { AsyncEventProcessedDirective } from './async-event-processed.directive';
 import { AsyncEventErrorDirective } from './async-event-error.directive';
+import { NgAsyncEventDefaultsService } from './ng-async-event-defaults.service';
+import { AsyncEventDefaultsComponent } from './async-event-defaults.component';
 
 @NgModule({
   imports: [
@@ -12,6 +14,7 @@ import { AsyncEventErrorDirective } from './async-event-error.directive';
   ],
   declarations: [
     AsyncEventComponent,
+    AsyncEventDefaultsComponent,
     AsyncEventInitDirective,
     AsyncEventProcessingDirective,
     AsyncEventProcessedDirective,
@@ -19,10 +22,14 @@ import { AsyncEventErrorDirective } from './async-event-error.directive';
   ],
   exports: [
     AsyncEventComponent,
+    AsyncEventDefaultsComponent,
     AsyncEventInitDirective,
     AsyncEventProcessingDirective,
     AsyncEventProcessedDirective,
     AsyncEventErrorDirective,
+  ],
+  providers: [
+    NgAsyncEventDefaultsService
   ]
 })
 export class NgAsyncEventModule { }

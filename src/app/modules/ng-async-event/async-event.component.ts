@@ -4,6 +4,8 @@ import { AsyncEventInitDirective } from './async-event-init.directive';
 import { AsyncEventProcessingDirective } from './async-event-processing.directive';
 import { AsyncEventProcessedDirective } from './async-event-processed.directive';
 import { AsyncEventErrorDirective } from './async-event-error.directive';
+import { NgAsyncEventDefaultsService } from './ng-async-event-defaults.service';
+import { AsyncEventTemplateContext } from './async-event-template-context';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -21,30 +23,34 @@ export class AsyncEventComponent {
   @ContentChild(AsyncEventProcessedDirective) asyncEventProcessedDirective?: AsyncEventProcessedDirective;
   @ContentChild(AsyncEventErrorDirective) asyncEventErrorDirective?: AsyncEventErrorDirective;
 
-  get initTemplateRef(): TemplateRef<IAsyncEvent> {
-    return this.asyncEventInitDirective && this.asyncEventInitDirective.templateRef;
+  constructor(private _defaultsService: NgAsyncEventDefaultsService) {}
+
+  get initTemplateRef(): TemplateRef<AsyncEventTemplateContext> {
+    return this.asyncEventInitDirective && this.asyncEventInitDirective.templateRef
+      ? this.asyncEventInitDirective.templateRef
+      : this._defaultsService.initTemplateRef;
   }
 
-  get processingTemplateRef(): TemplateRef<IAsyncEvent> {
-    return this.asyncEventProcessingDirective && this.asyncEventProcessingDirective.templateRef;
+  get processingTemplateRef(): TemplateRef<AsyncEventTemplateContext> {
+    return this.asyncEventProcessingDirective && this.asyncEventProcessingDirective.templateRef
+      ? this.asyncEventProcessingDirective.templateRef
+      : this._defaultsService.processingTemplateRef;
   }
 
-  get processedTemplateRef(): TemplateRef<IAsyncEvent> {
-    return this.asyncEventProcessedDirective && this.asyncEventProcessedDirective.templateRef;
+  get processedTemplateRef(): TemplateRef<AsyncEventTemplateContext> {
+    return this.asyncEventProcessedDirective && this.asyncEventProcessedDirective.templateRef
+      ? this.asyncEventProcessedDirective.templateRef
+      : this._defaultsService.processedTemplateRef;
   }
 
-  get errorTemplateRef(): TemplateRef<IAsyncEvent> {
-    return this.asyncEventErrorDirective && this.asyncEventErrorDirective.templateRef;
+  get errorTemplateRef(): TemplateRef<AsyncEventTemplateContext> {
+    return this.asyncEventErrorDirective && this.asyncEventErrorDirective.templateRef
+      ? this.asyncEventErrorDirective.templateRef
+      : this._defaultsService.errorTemplateRef;
   }
 
   get templateOutletContext() {
-    return ({
-      $implicit: this.asyncEvent,
-      argument: this.asyncEvent && this.asyncEvent.argument,
-      error: this.asyncEvent && this.asyncEvent.error,
-      result: this.asyncEvent && this.asyncEvent.result,
-      state: this.asyncEvent && this.asyncEvent.state,
-    });
+    return new AsyncEventTemplateContext(this.asyncEvent);
   }
 
   get renderInit() {

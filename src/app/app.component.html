@@ -1,27 +1,28 @@
-<async-event [asyncEvent]="testEvent$ | async">
+<async-event-defaults>
 
   <div *asyncEventProcessing>
     Loading...
   </div>
 
   <div *asyncEventProcessed="let result=result">
-    {{ result }}
-  </div>
-
-</async-event>
-
-<async-event [asyncEvent]="errorEvent$ | async">
-
-  <div *asyncEventProcessing>
-    Loading...
-  </div>
-
-  <div *asyncEventProcessed="let result=result">
-    {{ result }}
+    {{ result | json }}
   </div>
 
   <div *asyncEventError="let error=error">
     {{ error }}
+    <code *ngIf="error.stack">
+      {{ error.stack }}
+    </code>
   </div>
+</async-event-defaults>
 
+<async-event [asyncEvent]="testEvent$ | async">
+
+  <!-- <div *asyncEventProcessed="let result=result">
+    {{ result }}
+  </div> -->
+
+</async-event>
+
+<async-event [asyncEvent]="errorEvent$ | async">
 </async-event>

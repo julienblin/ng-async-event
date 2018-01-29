@@ -1,5 +1,5 @@
 import { Directive, TemplateRef, ContentChild } from '@angular/core';
-import { IAsyncEvent } from 'rx-async-event';
+import { AsyncEventTemplateContext } from './async-event-template-context';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -7,6 +7,6 @@ import { IAsyncEvent } from 'rx-async-event';
 })
 export class AsyncEventErrorDirective {
 
-  @ContentChild(TemplateRef) templateRef?: TemplateRef<IAsyncEvent>;
+  @ContentChild(TemplateRef) templateRef?: TemplateRef<AsyncEventTemplateContext>;
 
 }
