@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
-import { NgAsyncEventModule } from './modules/ng-async-event/ng-async-event.module';
-
+import { NgAsyncEventModule } from 'ng-async-event';
 
 @NgModule({
   declarations: [

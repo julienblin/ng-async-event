@@ -1,0 +1,29 @@
+{
+  "name": "ng-async-event",
+  "version": "2.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julienblin/ng-async-event.git"
+  },
+  "keywords": [
+    "angular",
+    "rx",
+    "rxjs",
+    "async",
+    "event"
+  ],
+  "author": {
+    "name": "Julien Blin",
+    "email": "julien.blin@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/julienblin/ng-async-event/issues"
+  },
+  "homepage": "https://github.com/julienblin/ng-async-event#readme",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "rx-async-event": "^3.1.0"
+  }
+}

@@ -4,7 +4,6 @@ import { AsyncEventProcessingDirective } from './async-event-processing.directiv
 import { AsyncEventProcessedDirective } from './async-event-processed.directive';
 import { AsyncEventErrorDirective } from './async-event-error.directive';
 import { NgAsyncEventDefaultsService } from './ng-async-event-defaults.service';
-import { AsyncEventTemplateContext } from './async-event-template-context';
 
 /**
  * Sets defaults templates that are then used in <async-event>.

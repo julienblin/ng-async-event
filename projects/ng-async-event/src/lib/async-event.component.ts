@@ -30,7 +30,27 @@ import { AsyncEventTemplateContext } from './async-event-template-context';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'async-event',
-  templateUrl: './async-event.component.html',
+  template: `
+  <ng-container *ngIf="asyncEvent">
+
+    <ng-container *ngIf="renderInit">
+      <ng-template [ngTemplateOutlet]="initTemplateRef" [ngTemplateOutletContext]="templateOutletContext"></ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="renderProcessing">
+      <ng-template [ngTemplateOutlet]="processingTemplateRef" [ngTemplateOutletContext]="templateOutletContext"></ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="renderProcessed">
+      <ng-template [ngTemplateOutlet]="processedTemplateRef" [ngTemplateOutletContext]="templateOutletContext"></ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="renderError">
+      <ng-template [ngTemplateOutlet]="errorTemplateRef" [ngTemplateOutletContext]="templateOutletContext"></ng-template>
+    </ng-container>
+
+  </ng-container>
+  `,
 })
 export class AsyncEventComponent {
 

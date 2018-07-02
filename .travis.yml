@@ -4,7 +4,7 @@ node_js:
 script:
   - npm run package
 before_deploy:
-  - cd dist
+  - cd dist/ng-async-event
 deploy:
   skip_cleanup: true
   provider: npm

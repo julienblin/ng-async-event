@@ -4,7 +4,6 @@ Angular UI component that simplifies usage of [rx-async-event](https://github.co
 
 [![Travis](https://travis-ci.org/julienblin/ng-async-event.svg?branch=master)](https://travis-ci.org/julienblin/ng-async-event)
 [![npm](https://img.shields.io/npm/v/ng-async-event.svg)](https://www.npmjs.com/package/ng-async-event)
-[![bitHound Dependencies](https://www.bithound.io/github/julienblin/ng-async-event/badges/dependencies.svg)](https://www.bithound.io/github/julienblin/ng-async-event/master/dependencies/npm)
 
 ## Objectives
 
